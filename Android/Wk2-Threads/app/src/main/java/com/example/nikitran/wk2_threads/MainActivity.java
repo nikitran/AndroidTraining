@@ -13,9 +13,20 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+
+import java.util.concurrent.Callable;
+
+import rx.Observable;
+import rx.Observer;
+import rx.Subscription;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView tV;
+    Subscription myS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
     ///////////////////////////////////////////////////2. Asynch
 
     //AsynchTask is a way with working with thread given in Android
-    public void onAsynchTask() {
 
+    public void onAsynchTask(View view) {
         new AsyncTask<Integer, Void, String>() {    // string = will be used for onPostExecute
 
             // will run on the background thread, everything else runs on the UI thread
@@ -69,15 +80,12 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                     return "AT Error";
                 }
-
             }
 
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 tV.setText(s);
             }
-
-            ;
         }.execute(1);
     }
 
@@ -162,5 +170,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    ///////////////////////////////////////////////////////////// 4. RxJava
+    public void onRx(View view){
+        doRx(2);
+    }
+
+    // observable
+    private void doRx(final int i){
+        Observable<Integer> myO = Observable.fromCallable(
+                new Callable<Integer>(){
+
+                    public Integer call() throws Exception {
+                        Thread.sleep(i*1000);
+                        return i;
+                    }
+                }
+        );
+
+        //subscription
+        myS = myO
+                .subscribeOn(Schedulers.newThread())    //run on the a new thread
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+                    @Override
+                    public void onNext(Integer integer) {
+                        tV.setText("RxJava " + i);
+                    }
+                });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if((myS != null) && !(myS.isUnsubscribed()))
+            myS.unsubscribe();
+    }
 }
 

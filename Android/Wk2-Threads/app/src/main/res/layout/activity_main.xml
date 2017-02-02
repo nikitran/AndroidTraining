@@ -55,12 +55,12 @@
         android:layout_alignEnd="@+id/button3" />
 
     <Button
-        android:text="Event Bus 2"
+        android:text="RxJava"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:onClick="onEB2"
+        android:onClick="onRx"
         android:id="@+id/button4"
         android:layout_alignEnd="@+id/editText" />
 
