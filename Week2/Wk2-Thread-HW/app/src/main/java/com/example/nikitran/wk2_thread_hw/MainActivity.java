@@ -1,8 +1,8 @@
 package com.example.nikitran.wk2_thread_hw;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -17,7 +17,6 @@ import java.util.concurrent.Callable;
 
 import rx.Observable;
 import rx.Observer;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -188,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setViewText(MyEvent e) {
         tView.setText("" + e.getVal());
