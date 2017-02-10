@@ -31,31 +31,20 @@ public class MainActivity extends AppCompatActivity {
     public void onButton1(View view)
     {
         operation = "add";
-
-        Intent i = new Intent (this, MyService.class);
-
-        String str = ((EditText)findViewById(R.id.editText1)).getText().toString();
-
-        if (!str.trim().isEmpty())
-            i.putExtra("key_val1", Integer.valueOf(str).intValue());
-
-        String str2 = ((EditText)findViewById(R.id.editText2)).getText().toString();
-        if (!str2.trim().isEmpty())
-            i.putExtra("key_val2", Integer.valueOf(str2).intValue());
-
-        if (!operation.trim().isEmpty())
-            i.putExtra("key_op", operation);
-
-        startService(i);
-
+        invokeService(operation);
     }
+
     public void onButton2(View view)
     {
         operation = "multiply";
+        invokeService(operation);
+    }
 
+    private void invokeService(String operation) {
         Intent i = new Intent (this, MyService.class);
 
         String str = ((EditText)findViewById(R.id.editText1)).getText().toString();
+
         if (!str.trim().isEmpty())
             i.putExtra("key_val1", Integer.valueOf(str).intValue());
 
@@ -63,13 +52,11 @@ public class MainActivity extends AppCompatActivity {
         if (!str2.trim().isEmpty())
             i.putExtra("key_val2", Integer.valueOf(str2).intValue());
 
-        if (!operation.trim().isEmpty())
-            i.putExtra("key_op", operation);
+        if (!this.operation.trim().isEmpty())
+            i.putExtra("key_op", this.operation);
 
         startService(i);
-
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void showResult(MyEvent e) {

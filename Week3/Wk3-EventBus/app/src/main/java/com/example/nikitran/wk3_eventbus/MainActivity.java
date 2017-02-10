@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.editText2);
         textView = (TextView) findViewById(R.id.textView);
-
     }
 
     public void onClick(View view)

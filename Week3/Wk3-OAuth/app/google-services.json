@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "242202957602",
+    "firebase_url": "https://wk3-auth-1e488.firebaseio.com",
+    "project_id": "wk3-auth-1e488",
+    "storage_bucket": "wk3-auth-1e488.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242202957602:android:db498eb9448c3864",
+        "android_client_info": {
+          "package_name": "com.example.nikitran.wk3_oauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242202957602-cc2q3hnuqfii6g4aaqoroiegsd7tfb1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjvZzfa-qFLgFLhvzCBGi0yn64cgfh_y8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242202957602-cc2q3hnuqfii6g4aaqoroiegsd7tfb1u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

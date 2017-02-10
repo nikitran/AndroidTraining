@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "569262858131",
+    "firebase_url": "https://wk2-sqlite.firebaseio.com",
+    "project_id": "wk2-sqlite",
+    "storage_bucket": "wk2-sqlite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569262858131:android:5625c7052ded9c6d",
+        "android_client_info": {
+          "package_name": "com.example.nikitran.wk2_sqlite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569262858131-67abf9nigd92n59bn6or7guiac79q16h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvGctIoRS0BDdw9-wIq3awz6rHe6Mqk4M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569262858131-67abf9nigd92n59bn6or7guiac79q16h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
