@@ -13,13 +13,18 @@ public class Contact {
 
     //Empty constructor
     public Contact(){
-
     }
 
     //Constructors
     public Contact(int id, String name, String phone)
     {
         mId = id;
+        mName = name;
+        mPhone = phone;
+    }
+
+    public Contact(String name, String phone)
+    {
         mName = name;
         mPhone = phone;
     }

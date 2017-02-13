@@ -2,8 +2,12 @@ package com.example.nikitran.wk2_sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nikitran on 1/30/17.
@@ -79,9 +83,141 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // -------------------------------- reading contacts from the database-------------------
     //---------------------------------------------------------------------------------------
-    // public Contact getContact(int id){
-    //    SQLiteDatabase db = this.getReadableDatabase();
+     public Contact getContact(int id){
+        // 1. get the data repository in Read mode:
+        SQLiteDatabase db = this.getReadableDatabase();
 
-    //Cursor cursor = db.query(TABLE_CONTACTS, newString[]{KEY_ID, Cursor KEY_NAME, KEY_PHONE}, KEY_ID + "=?", )
-    //}
+         // 2. Define a projection that specifies which columns from the database you will actually
+         // use after this query.
+         String[] projection = {
+                 KEY_ID,
+                 KEY_NAME,
+                 KEY_PHONE
+         };
+
+         // 3. Filter results WHERE "title" = 'My Title'
+         String selection = KEY_ID + " = ?";
+
+         // 4. The values for the WHERE clause
+         String[] selectionArgs = { String.valueOf(id) };
+
+         // 5. How you want the results sorted in the resulting Cursor
+         String sortOrder = null;
+
+        // 6. fine the row
+         Cursor cursor = db.query(
+                 TABLE_NAME_CONTACTS,
+                 projection,
+                 selection,
+                 selectionArgs,
+                 null,
+                 null,
+                 null);
+
+         if(cursor != null)
+            cursor.moveToFirst();
+
+         Contact contact = new Contact(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2));
+
+            // return contact
+            return contact;
+
+     }
+
+    // ----------------------------------Getting All Contacts---------------------------------------
+
+    public List<Contact> getAllContacts() {
+        // Create and array for contacts
+        List<Contact> contactList = new ArrayList<Contact>();
+
+        // 1. get the db in write mode:
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME_CONTACTS;
+
+        // 3. find the row
+        Cursor cursor = db.rawQuery(
+                selectQuery,
+                null
+        );
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Contact contact= new Contact();
+                contact.setID(Integer.parseInt(cursor.getString(0)));
+                contact.setName(cursor.getString(1));
+                contact.setPhone(cursor.getString(2));
+
+                // Adding contact to list
+                contactList.add(contact);
+                } while (cursor.moveToNext());      //more to next row
+            }
+
+        // return contact list
+        return contactList;
+    }
+
+    //----------------------------------Getting contacts Count-------------------------------------
+    public int getContactsCount() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // select all
+        String countQuery = "SELECT  * FROM " + TABLE_NAME_CONTACTS;
+
+        Cursor cursor = db.rawQuery(
+                countQuery,
+                null
+        );
+
+        cursor.close();
+
+        // return count by calling get count
+        return cursor.getCount();
+    }
+
+    //----------------------------------Updating single contact------------------------------------
+    public int updateContact(Contact contact) {
+
+        // 1. writable mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. New value for one column
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, contact.getName());
+        values.put(KEY_PHONE, contact.getPhone());
+
+        // Which row to update, based on the title
+        String selection =  KEY_ID + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(contact.getID()) };
+
+        // updating row
+        return db.update(
+                TABLE_NAME_CONTACTS,
+                values,
+                selection,
+                selectionArgs
+        );
+    }
+
+    //-------------------------------Deleting single contact---------------------------------------
+    public void deleteContact(Contact contact) {
+        // 1. writable
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. Define 'where' part of query.
+        String selection = KEY_ID + " LIKE ?";
+
+        // 3. Specify arguments in placeholder order.
+        String[] selectionArgs = { String.valueOf(contact.getID()) };
+
+        db.delete(
+                TABLE_NAME_CONTACTS,
+                selection,
+                selectionArgs
+        );
+        db.close();
+    }
 }
