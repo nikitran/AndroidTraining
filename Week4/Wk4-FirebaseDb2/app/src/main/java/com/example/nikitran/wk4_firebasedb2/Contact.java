@@ -1,13 +1,13 @@
-package com.example.nikitran.wk4_recyclerview_firebasedb;
+package com.example.nikitran.wk4_firebasedb2;
 
 /**
  * Created by nikitran on 2/13/17.
  */
 
 public class Contact {
-    private String Name = "";
-    private String Phone = "";
-    private String Key = "";
+    private String Name;
+    private String Phone;
+    private String Key;
 
     public String getName() {
         return Name;

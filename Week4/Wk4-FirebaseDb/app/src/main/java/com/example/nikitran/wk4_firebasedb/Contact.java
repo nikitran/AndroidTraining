@@ -7,28 +7,20 @@ package com.example.nikitran.wk4_firebasedb;
 public class Contact {
     private String mName;
     private String mPhone;
-    //private String key = "";
+    private String mKey;
 
     public Contact() {
-        mName = "";
-        mPhone = "";
     }
-
-    public Contact(String mName, String mPhone) {
-        this.mName = mName;
-        this.mPhone = mPhone;
+    public void setContact(String name, String phone) {
+        this.mName = name;
+        this.mPhone = phone;
     }
-
-    /*
     public String getKey() {
-        return key;
+        return mKey;
     }
-
     public void setKey(String key) {
-        this.key = key;
-    }*/
-
-
+        this.mKey = key;
+    }
     public String getmName() {
         return mName;
     }
