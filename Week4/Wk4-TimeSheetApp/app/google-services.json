@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_number": "50390109156",
+    "firebase_url": "https://wk4-timesheetapp-a0863.firebaseio.com",
+    "project_id": "wk4-timesheetapp-a0863",
+    "storage_bucket": "wk4-timesheetapp-a0863.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50390109156:android:1b9f0b06e7fc0ccb",
+        "android_client_info": {
+          "package_name": "com.example.nikitran.wk4.timesheetapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "50390109156-3jl61sbac1utdi5l0kd58avnrbgtd39h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nikitran.wk4.timesheetapp",
+            "certificate_hash": "D13237746B170DF4262B8AEE97BF4C6CBA10B7EC"
+          }
+        },
+        {
+          "client_id": "50390109156-nvbh8v86ql5u350ultb2t7dlal1sraed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "50390109156-nvbh8v86ql5u350ultb2t7dlal1sraed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

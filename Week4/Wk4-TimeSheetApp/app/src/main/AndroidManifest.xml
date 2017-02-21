@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nikitran.wk4_timesheetapp">
+    package="com.example.nikitran.wk4.timesheetapp">
 
     <application
         android:allowBackup="true"
@@ -8,10 +8,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".EditAccount"
+            android:label="Edit Account Information" />
+        <activity
+            android:name=".TimeSheetActivity"
+            android:label="Submit Time Sheet" />
+        <activity
+            android:name=".FirstActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <service android:name=".CalculationService" />
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

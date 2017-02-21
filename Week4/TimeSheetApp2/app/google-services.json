@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "867546351837",
+    "firebase_url": "https://timesheetapp2-5ec08.firebaseio.com",
+    "project_id": "timesheetapp2-5ec08",
+    "storage_bucket": "timesheetapp2-5ec08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867546351837:android:9d5e4f509f07b078",
+        "android_client_info": {
+          "package_name": "com.example.nikitran.timesheetapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867546351837-3qjse8oe8kh0vu14r0qvrtin1vpc0p6e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nikitran.timesheetapp",
+            "certificate_hash": "D13237746B170DF4262B8AEE97BF4C6CBA10B7EC"
+          }
+        },
+        {
+          "client_id": "867546351837-ka3l9diiim2hqqkmuv87jhunk72erp2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL9HHPJEkg6HU62YEt1fR8iZzWpte2MCk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867546351837-ka3l9diiim2hqqkmuv87jhunk72erp2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867546351837:android:fae768e783ba87c3",
+        "android_client_info": {
+          "package_name": "com.mobileappscompany.training.myfirebase2app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867546351837-mbt8esai45obbbq6k3vkjkunu54vpj76.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobileappscompany.training.myfirebase2app",
+            "certificate_hash": "D13237746B170DF4262B8AEE97BF4C6CBA10B7EC"
+          }
+        },
+        {
+          "client_id": "867546351837-ka3l9diiim2hqqkmuv87jhunk72erp2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL9HHPJEkg6HU62YEt1fR8iZzWpte2MCk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867546351837-ka3l9diiim2hqqkmuv87jhunk72erp2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
