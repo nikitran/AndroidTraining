@@ -1,0 +1,100 @@
+1)
+FizzBuzz problem : Write a Java program that prints the numbers from 1 to 50. But for multiples of three print "Fizz" instead of the number and for the multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz"
+This is also one of the classical programming questions, which is asked on any Java programming or technical interviews. This questions is very basic but can be very trick for programmers, who can't code, that's why it is used to differentiate programmers who can do coding and who can't. Here is a sample Java program to solve FizzBuzz problem :
+
+public void FizzBuzz()
+{
+	for (int i = 1; i <= 50; i++){
+		if(i % 3 == 0 && i % 5 == 0){
+			System.out.println(“FizzBuzz”);
+		}
+		else if (i % 3 == 0){
+			System.out.println(“Fizz”);
+		}
+		else if (i % 5 == 0){
+			System.out.println(“Buzz”);
+		}
+	}
+}
+
+
+2)
+How to check if a number is Armstrong number or not?
+
+An Armstrong number is a 3 digit number for which sum of cube of its digits is equal to the number itself. An example of Armstrong number is 153 as 153= 1+ 125+27 which is equal to 1^3+5^3+3^3. One more example of the Armstrong number is 371 because it is the sum of 27 + 343 + 1 which is equal to 3^3 + 7^3 + 1^3 
+Only Armstrong numbers are: 153, 370, 371, 407
+
+public void isArmstrong(val)
+{
+
+	int n = val;
+
+	int first = n % 10;
+	n = n/10;
+	int second = n % 10;
+	n = n/10
+	int third = n  
+
+	if (Math.pow(first, 3) + Math.pow(second, 3) + Math.pow(third, 3) == n) 
+		return true;
+	else 
+		return false;
+		
+}
+
+
+3)
+Write a sample code to reverse Singly Linked List by iterating through it only once.
+
+public Node reverseLinkedList(Node root){
+	Node newHead;
+	Node PtNode = root;
+	
+	while(root != null){
+		
+		// 1. remove from the head:
+		ptNode = head;
+		root = pt.next;
+
+		// 2. add to the head
+		pt.next = newHead;
+		newHead = pt; 
+	}
+	return newHead;
+}
+
+4)
+Write a program to reverse a string using recursive methods.
+You should not use any string reverse methods to do this.
+
+public string reverse(String str){
+	
+	if (str.length() <= 1) return str; 
+
+	return reverse(str.substring(1)) + str.charAt[0];
+}
+
+
+5)
+Write a program to convert decimal number to binary format using numeric operations. 
+Below example shows how to convert decimal number to binary format using numeric operations.
+
+
+
+6)
+Bubble Sort: 
+
+	public static int[] bubbleSort(int[] intArr) {
+		int temp;
+		for (int i = 0; i < intArr.length - 1; i++) {
+ 
+			for (int j = 1; j < intArr.length - i; j++) {
+				if (intArr[j - 1] > intArr[j]) {
+					temp = intArr[j - 1];
+					intArr[j - 1] = intArr[j];
+					intArr[j] = temp;
+				}
+			}
+		}
+		return intArr;
+	}
