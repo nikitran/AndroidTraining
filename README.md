@@ -1,42 +1,70 @@
 # Android Interview Questions:
 
-#### What is Android? 
+### What is Android? 
 Android is an Open Source mobile operating system created by Google. It is used to power a wide range of mobile phones, tablets, and laptops.
 
-#### What is APK?
+### What is APK?
 It is a file format, it means Android Application Package File and is used to distribute and install applications on Android.
 
-#### What is the difference between Dalvik and ART? 
+### Explain the Android Architecture and its key components?
+
+		4 levels of
+		The Android architecture is a stack of technology that allows an application to
+		run on a android OS. There are 5 layers and 6 component
+- Linux Kernel - bottom layer
+- Libraries & ART
+- Java framework API
+- Application - top layer
+
+### What is the difference between Dalvik and ART? 
 - Dalvik - JIT(just in time)compilation (compilation done during the execution of the application, at runtime) 
 - ART (Android Runtime)- JIT and AOT(ahead of time) compilation, optimize garbage collector and improved debugging support (introduced in Android 5.0)
 
-#### How do you track memory leaks? 
+
+### What is the difference between AOT and JIT?
+
+### How do you track memory leaks? 
  - I’d profile my application to use the Memory Monitor section of the Android Monitor tool provided by Android Studio. 
  - From there I can begin to analyze the frequency and patterns of garbage collection, dump the Java heap to identify candidate objects that get or stay allocated unexpectedly or unnecessarily, and as well use the allocation tracking to detect where exactly in my code are the problems happening. With 2.
 
-#### What are the ways you use to debug a program? 
+### What are the ways you use to debug a program? 
 1. first select the device to run the applicaton  
 2. define my breakpoints
 3. run the application with the debugger tool 
   - examine the variables at runtime 
   - use logcat for logged messages and system logs
 
-#### How do you support multiple languages? 
+### How do you support multiple languages? 
  - with in the resources create an alternative strings.xml file with the desired language(s) locale qualifier.
 
-#### What are 9-patch images? 
+### What are 9-patch images? 
  - 9-Patch image is a bitmap images that automatically resize to adjust to the contents of the view and the size of the 
  - screen. It can be created in Android studio with the WYSIWYG editor
 
-#### How can you guarantee backwards compatibility in Android? 
+### How can you guarantee backwards compatibility in Android? 
   - In the manifest define the lowest Android API level that the app is going to target
   - then create the resources accordingly, using the available Android supporting libraries, and programmatically address the implementation of supporting features by querying the current device OS API Level.
 
-#### How do you support phones and tablets? 
+### How do you support phones and tablets? 
   - create a UI design that is flexible and can translate well with different screen sizes and devices
   - create alternative resources files for layout and dimension values with qualifiers
 
+### what is Material Design
+
+#### What is new for developers in each of the follonwing:
+- Lollipop - material design
+- Marshmallow - runtime permissions
+- Nougat - split screen, new compiler (Jack and jill)
+
+#### Can you tell me what are the new features in Android Nougat?
+
 ## ACTIVITY 
+
+#### What is a Context and what is it used for?
+1. Activity context: 
+- A context is an abstract class, from which Activity and Service derived from  
+- It gives you access to resources, allow components to communicate through messages and gives information about the app environment.
+2. Application Context: exist for the lifetime of the application
 
 #### What is an Activity? 
 An Activity is an abstract class that is one of the 4 key component of Android:
@@ -55,12 +83,14 @@ Activity Lifecycle:
 	6. OnDestory()  
 	- OnRestore()  
 
-#### What are the lifecycle callbacks that are guaranteed to happen in an Activity? 
+### What are the lifecycle callbacks that are guaranteed to happen in an Activity? 
 The onCreate, onStart, onResume, onPause, onStop
 
-#### Can I destroy an Activity? 
+### Can I destroy an Activity? 
  - finish method  
  - finishActivity method - if the activity you want to destroy was started from the Activity you’re currently at
+ 
+### How would you then manage the backstack?
 
 #### I want to get information back from an Activity, how can I do that? 
  - You would start the activity with the startActivityForResult and onActivityResult methods.
@@ -136,14 +166,18 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 ## Content Providers
 
 ## Intent & Intent Filters
-#### What is serializable?
-#### What is a Parcelable? Why is it better than a Serializable?
+
+### What is an Intent?
+
+### What is serializable?
+### What is a Parcelable? Why is it better than a Serializable?
 •	Serializable - uses reflection
 •	Parcelable -
 
 ## Threads
 
-## REST
+## RESTful
+
 
 ## Testing
 
@@ -154,15 +188,15 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 
 #### How do you set up MVP?
 #### Did you do any Material Design improvements over there?
-####What is an Intent?
 
-####How is an Activity different from a Fragment?
-####Talk to me about a challenging situation you've had.
-####What have you been doing lately?
-####Have you done streaming video?
-####What players have you used?
-####You have also used exoPlayer?
-####What are the differences between the list view and the recycler view?
+
+#### How is an Activity different from a Fragment?
+#### Talk to me about a challenging situation you've had.
+#### What have you been doing lately?
+#### Have you done streaming video?
+#### What players have you used?
+#### You have also used exoPlayer?
+#### What are the differences between the list view and the recycler view?
 
 ####What would you do to keep the data in a SQLite database when updating an app?
 ####Have you used external libraries to access an SQLite database?
@@ -180,8 +214,6 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 
 #### Why would you use the same key more than once in an activity?
 
-#### How would you then manage the backstack?
-
 ##### What is the difference between a content value and a cursor?
 
 #### What libraries have you used for rest?
@@ -189,9 +221,6 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 #### Do you like any of them better than the others?
 
 #### Do you have any experience with payment gateways?
-
-
-
 
 #### What are the things you think about when building an AN app from scratch?
 
@@ -280,7 +309,6 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 
 #### How many apps on store?
 
-#### Can you tell me what are the new features in Android Nougat?
 
 #### What is the Picture-In-Picture mode?
 
@@ -296,27 +324,12 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 
 #### What is the startID in onStartCommand()?
 
-#### What is the difference between AOT and JIT?
 
 #### What third party libs have you used for Logging?
 
 #### Which synchronization practices do you prefer?
 
-#### Explain the Android Architecture and its key components?
 
-		4 levels of
-		The Android architecture is a stack of technology that allows an application to
-		run on a android OS. There are 5 layers and 6 component
-Linux Kernel - bottom layer
-Libraries & ART
-Java framework API
-Application - top layer
-
-#### What is a Context and what is it used for?
-1. Activity context: 
-- A context is an abstract class, from which Activity and Service derived from  
-- It gives you access to resources, allow components to communicate through messages and gives information about the app environment.
-2. Application Context: exist for the lifetime of the application
 
 #### What are the differences between a list view and a recycler view? 
 The recycler view: 
@@ -334,10 +347,7 @@ Content providers is one of the 4 key component of Android. It allows interproce
 #### What is the relationship between the life cycle of an AsyncTask and an Activity? 
 What problems can this result in? How can these problems be avoided? When an activity is destroyed the AsyncTask continues to execute. The thread becomes and orphan thread and is a problem when the Asynctask wants to return the result. To avoid this problem, stop the running operation on the onDestroy or on onStop callbacks, or you can use a headless fragment, doesn’t destroy the activity when the context change, eventbus, - When change orientation or change language, change in configuration, activity recycles. 
 
-#### What is new for developers in each of the follonwing:
-- Lollipop - material design
-- Marshmallow - runtime permissions
-- Nougat - split screen, new compiler (Jack and jill)
+
 
 #### What is an Intent? What are three common uses of an Intent? 
 2 types - implicit and explicit Intent - allows a way for communicated between the 4 major android components. It can store extras and bundles to be passed between activities. It is also defined by its action and categories. The 3 common applications are: 1. start an activity 2. starts service 3. receive a broadcast 4. bind to a service 
