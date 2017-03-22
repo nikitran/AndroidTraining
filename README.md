@@ -4,28 +4,29 @@
 Android is an Open Source mobile operating system created by Google. It is used to power a wide range of mobile phones, tablets, and laptops.
 
 ### What is APK?
-It is a file format, it means Android Application Package File and is used to distribute and install applications on Android.
+It is a file format, it means Android Package Kit and is used to distribute and install applications on Android.
 
 ### Explain the Android Architecture and its key components?
+The Android architecture is a stack of technology that allows an application to run on an android OS. There are 5 layers and 6 component
 
-		4 levels of
-		The Android architecture is a stack of technology that allows an application to
-		run on a android OS. There are 5 layers and 6 component
-- Linux Kernel - bottom layer
-- Libraries & ART
-- Java framework API
-- Application - top layer
+- 1. Linux Kernel - bottom layer
+- 2. Libraries & ART
+- 3. Java framework API
+- 4. Application - top layer
 
 ### What is the difference between Dalvik and ART? 
 - Dalvik - JIT(just in time)compilation (compilation done during the execution of the application, at runtime) 
 - ART (Android Runtime)- JIT and AOT(ahead of time) compilation, optimize garbage collector and improved debugging support (introduced in Android 5.0)
 
-
 ### What is the difference between AOT and JIT?
+- JIT compiler: compiles while running (also known as dynamic translation - compiles at runtime)
+- AOT compiler: compiles before running (can reduce reduced runtime overhead)
 
 ### How do you track memory leaks? 
- - I’d profile my application to use the Memory Monitor section of the Android Monitor tool provided by Android Studio. 
- - From there I can begin to analyze the frequency and patterns of garbage collection, dump the Java heap to identify candidate objects that get or stay allocated unexpectedly or unnecessarily, and as well use the allocation tracking to detect where exactly in my code are the problems happening. With 2.
+ - third party library: LeakCanary 
+ - use the Memory Monitor section of the Android Monitor tool provided by Android Studio. 
+ - analyze the frequency and patterns of garbage collection, 
+ - dump the Java heap to identify candidate objects that get or stay allocated unexpectedly or unnecessarily, and as well use the allocation tracking to detect where exactly in my code are the problems happening.
 
 ### What are the ways you use to debug a program? 
 1. first select the device to run the applicaton  
@@ -35,7 +36,7 @@ It is a file format, it means Android Application Package File and is used to di
   - use logcat for logged messages and system logs
 
 ### How do you support multiple languages? 
- - with in the resources create an alternative strings.xml file with the desired language(s) locale qualifier.
+ - within the resources create an alternative strings.xml file with the desired language(s) locale qualifier.
 
 ### What are 9-patch images? 
  - 9-Patch image is a bitmap images that automatically resize to adjust to the contents of the view and the size of the 
@@ -50,80 +51,137 @@ It is a file format, it means Android Application Package File and is used to di
   - create alternative resources files for layout and dimension values with qualifiers
 
 ### what is Material Design
+ - material design is a standard guildline created by Google for how an android application should look and feel. 
+ - creates a sense of conhesiveness and familiarlarity between apps for the user experience
+ - example: color scheme, text, alignents,  
 
 #### What is new for developers in each of the follonwing:
-- Lollipop - material design
-- Marshmallow - runtime permissions
-- Nougat - split screen, new compiler (Jack and jill)
+- Lollipop (5.0) - material design, Android runtime (ART) replace Delvik
+- Marshmallow (6.0) - runtime permissions, Doze & App standby mode 
+- Nougat (7.0) - split screen, JIT to compliment AOT 
 
 #### Can you tell me what are the new features in Android Nougat?
+- split screen 
+- JIT and AOT
+- enhanced notifications
+- improved Doze - conserve battery life
+
+#### What is a bundle
+A Bundle can contain primitive data types, arrays, String and objects which are of the Parcelable or Serialisable type
+
 
 ## ACTIVITY 
 
 #### What is a Context and what is it used for?
-1. Activity context: 
-- A context is an abstract class, from which Activity and Service derived from  
-- It gives you access to resources, allow components to communicate through messages and gives information about the app environment.
-2. Application Context: exist for the lifetime of the application
+A Context is an abstract class
+There are 2 types of Contexts: activity context ()and application contxt (exist for the lifetime of the application)
+- its the super class for Activity and Service  
+- 1. It gives access to resources 
+- 2. allow components to communicate through messages
+- 3. gives information about the app environment
 
 #### What is an Activity? 
-An Activity is an abstract class that is one of the 4 key component of Android:
+An Activity is an abstract class that is a part of the 4 key component of Android:
 - provides a screen that the user interacts with
 - provides the UI elements 
+- setContentView(View) used to set the view 
 - derived from the Context class
 	
-#### What is the Android lifecycle? 
-It’s the cycle that every Activity in any Android application follows.
-Activity Lifecycle:
-	1. OnCreate() 
-	2. OnStart()  
-	3. OnResume()  
-	4. OnPause()  
-	5. OnStop() 
-	6. OnDestory()  
-	- OnRestore()  
+#### What is the Activity lifecycle? 
+It’s the cycle that every Activity follows
+
+##### There are 4 States of an Activity :
+1. RUNNING - If an activity is in the foreground of the screen (at the top of the stack), it is active or running.
+2. PAUSED - If an activity has lost focus but is still visible (that is, a new non-full-sized or transparent activity has focus on top of your activity), it is paused. A paused activity is completely alive (it maintains all state and member information and remains attached to the window manager), but can be killed by the system in extreme low memory situations.
+3. STOPPED - If an activity is completely obscured by another activity, it is stopped. It still retains all state and member information, however, it is no longer visible to the user so its window is hidden and it will often be killed by the system when memory is needed elsewhere.
+4. KILLED - If an activity is paused or stopped, the system can drop the activity from memory by either asking it to finish, or simply killing its process. When it is displayed again to the user, it must be completely restarted and restored to its previous state.
+
+##### There are 7 callbacks : 
+1. OnCreate() - called when the activity is first created (when first starts or cromes from killed status)
+2. OnStart() - called when the activity comes to the foreground and visible for the user
+3. OnResume() - called when the activity is prepared to interact with the user
+4. OnPause() - called when another activity comes into the foreground and partially covers the view 
+5. OnStop() - called when the view is completely out of view
+*6. OnRestart() - After the activity has been stopped, it could bring back to the foreground again. In this case, the activity will start again from onStart()
+7. OnDestory() - called when its closed by the user, by finish() method or by the system (process killed by the sysem)  
 
 ### What are the lifecycle callbacks that are guaranteed to happen in an Activity? 
-The onCreate, onStart, onResume, onPause, onStop
+- OnCreate(), OnStart(), OnResume()  
+- OnPause()
+- OnStop() 
 
 ### Can I destroy an Activity? 
- - finish method  
+ yes
+ - finish() method -
  - finishActivity method - if the activity you want to destroy was started from the Activity you’re currently at
  
-### How would you then manage the backstack?
+#### What is a task?
+A task is a collection of activities that users interact with when performing a certain job
+
+#### What is the backstack?
+The backstack is a stack of activities, that have recently been active. 
+Activities are pushed onto the the stack in the order that they were started. The activity at the top of the stack is in the running state and the other activites are in the stopped state. When the user hits the back button the activity at the top of the stack is popped off and destroyed.  
 
 #### I want to get information back from an Activity, how can I do that? 
- - You would start the activity with the startActivityForResult and onActivityResult methods.
+ - Start the activity with the startActivityForResult
+ - Retrieve the information from the onActivityResult
 
 #### What is the difference between StartActivity() and StartActivityResult()?
+These are the two ways of starting an activity 
+ - StartActivity() 
+ - StartActivityResult() - The new activity can send back information through the setResult() method. When the activity ends the result comes back through your onActivityResult() method
+ 
+#### How is the onSaveInstanceState() callback used?
+- Instance state of an activity is required to restore the activity to the state in which the user left it.
+- The onSaveInstanceState() callback method can be use to store the activity instance state as a Bundle (always call the super)
+- the Bundle data is passed at restart of the activity to the onCreate() method and onRestoreInstanceState() as parameter
+- *The onSaveInstanceState() method is not called if the user presses the back button.
 
+#### How is the saved instance state is recovered after that activity have been destroyed?
+- When an activity is recreated after it was previously destroyed, you can recover your saved state from the Bundle that the system passes your activity. 
+- Both the onCreate() and onRestoreInstanceState() callback methods receive the same Bundle that contains the instance state information.
+- If the state bundle is null, then the system is creating a new instance of the activity, instead of restoring a previous one that was destroyed.
 
-#### How can I manage rotation changes? 
-- I would access the System’s Window Service through a Window manager with the current context to get the current rotation and from there decide what to do accordingly.
+#### If I’m in Activity A and I enter Activity B, what are the callbacks triggered? 
+- Activity A will call onPause() 
+- then Activity B will call onCreate(), onStart(), onResume() 
+- finally Activity A will call onStop().
 
-- If I’m in Activity A and I enter Activity B, what are the callbacks triggered? Activity A will onPause then Activity B will onCreate, onStart, onResume and finally Activity A will onStop.
-
-- If I’m in Activity A, then I enter Activity B and then press the back button, what are the callbacks triggered? Activity B will onPause, then Activity A will onRestart, onStart, and onResume. Finally Activity B will onStop and then onDestroy
+#### If I’m in Activity A, then I enter Activity B and then press the back button, what are the callbacks triggered? 
+- Activity B will onPause(), 
+- then Activity A will call onRestart(), onStart(), and onResume() 
+- Finally Activity B will call onStop() and then onDestroy()
 
 #### How can I send information from an Activity to another Activity? 
-You can send information through Activities using Extras through the various available putExtra methods that use key-value pairs. 
- - Extras with the put/getExtra() methods - uses key-value pair (primitives, parcelables, and bundles)
+ - Extras with the put putExtra/s() methods - uses key-value pair (primitives, parcelables, serilizables and bundles)
  - startActivityForResult and onActivityResult methods 
  - EventBus - third party library that simplifies the communication between components (Activities, Fragments, and background threads) 
 
 #### When is the onDestroy method called? 
-- If the activity is explicitly told to finish, 
-- when you rotate the display, and if the System is struggling for resources would temporarily destroy it.
+- finish() - If the activity is explicitly told to finish 
+- configuration change - when you rotate the display, language, input devices
+- killed by the system - when the system is struggling for resources, it could temporarily destroy it
 
-#### What is EventBus?
-- EventBus is third party library that simplifies the communication between components (Activities, Fragments, and background threads)
-- observer pattern
-- decouples event senders and event receivers (components dont have to know about each other)
+#### what is a configuration change?
+- A configuration changes are changes to the display as defined by the Resources.Configuration class.
+- (example: orientation, language, keyboard availability, input devices, etc). 
+- When a config change occurs at runtime it needs to update the activity to match that configuration (destroys and recreate the current activity)
+
+#### what happens when the device is rotated?
+The current activity will be destroyed (onPause, onStop, onDestroy) and recreated (onCreate, onStart, onResume)
+
+#### How to manage rotation changes? 
+- use savedInstanceState() to save and onCreate(Bundle savedInstantState) to restore data that will be lost during the orienation changes
+- retain a fragment if restarting the activity requires the recovery of a large set of data
 
 ##FRAGMENT:
 
-#### What is a FragmentManager? 
-Is the abstract class used to manage Fragments within an Activity.
+#### What is a Fragment?
+Fragment class helps to better modularize code, build more sophisticated user interfaces for larger screens, and help scale their application between small and large screens.
+A Fragment is a piece of an application's user interface or behavior that can be placed in an Activity.
+
+#### What is the Fragment Lifecycle?
+Though Fragment defines its own lifecycle, that lifecycle is dependent on its activity: if the activity is stopped, no fragments inside of it can be started; when the activity is destroyed, all fragments will be destroyed.
 
 #### What is the difference between an Activity and a Fragment? 
 - A Fragment is a piece of an application’s user interface or behavior that can be placed in an Activity, that is it requires an Activity to exist. 
@@ -131,20 +189,25 @@ Is the abstract class used to manage Fragments within an Activity.
 
 #### Headless Fragment?
 
+#### What is a FragmentManager? 
+Is the abstract class used to manage Fragments within an Activity.
+
 #### What is the difference between onCreateView() and onActivityCreated()? 
 The implementation of any action code can be optional in the onCreateView method this is because there is actually no need to always have an UI for every fragment, yet the onActivityCreated method is always the point in the Fragment’s lifecycle from which you can start referencing and using UI elements, gathering information that may be used to be persisted throughout the application task flow.
 
 #### How to get the FragmentManager from an Activity that is using the support libraries? 
 By importing the FragmentManager class from the android.support.v4.app package.
 
-####What method do you use to create the UI in an Activity and in a Fragment? 
+#### What method do you use to create the UI in an Activity and in a Fragment? 
 onCreate() - Activity onCreateView() - Fragment (which is called after the onCreate())
 
-####What is the Fragment lifecycle? 
+#### What is the Fragment lifecycle? 
 The Fragment lifecycle is the set of callback methods called whenever a Fragment is instantiated, since they have their properties of their own, its lifecycle is similar to that of the Activities however they have different states that can be addressed and managed in those callback methods.
 
-####How to support multi-screen devices? 
+#### How to support multi-screen devices? 
 Through the use of different resources designed to address the different sizes and densities available: layouts and bitmap densities.
+
+#### How would you then manage the backstack?
 
 #### How to communicate between a Activity and a Fragment? 
 Through interface declared in the fragment class and implemented by the parent Activity class. There is also the possibility to use a third party library which implements the subscribe and publish pattern, that simplifies the communication process, e.g. EventBus.
@@ -268,6 +331,11 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 
 
 #### What is Dagger?
+#### What is the difference between Dagger 1 and Dagger 2?
+#### What is EventBus?
+- EventBus is third party library that simplifies the communication between components (Activities, Fragments, and background threads)
+- observer pattern
+- decouples event senders and event receivers (components dont have to know about each other)
 
 #### Why is dependency injection helpful? Let’s say that I want to build an SDK to download the information from the server, how would you set up dependency injection?
 
