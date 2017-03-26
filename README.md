@@ -9,10 +9,10 @@ It is a file format, it means Android Package Kit and is used to distribute and 
 ### Explain the Android Architecture and its key components?
 The Android architecture is a stack of technology that allows an application to run on an android OS. There are 5 layers and 6 component
 
-- 1. Linux Kernel - bottom layer
-- 2. Libraries & ART
-- 3. Java framework API
-- 4. Application - top layer
+1. Linux Kernel - (bottom layer)
+2. Libraries & ART
+3. Java framework API
+4. Application - (top layer)
 
 ### What is the difference between Dalvik and ART? 
 - Dalvik - JIT(just in time)compilation (compilation done during the execution of the application, at runtime) 
@@ -66,13 +66,18 @@ The Android architecture is a stack of technology that allows an application to 
 - enhanced notifications
 - improved Doze - conserve battery life
 
+#### What are the launch modes in Android?
+
 ## Intent & Intent Filters
 
-
 #### What is an Intent? What are three common uses of an Intent? 
-Intent - allows a way for communicated between the 4 major android components.
+- Intents facilitate communicated between the android components
+- It can store extras and bundles to be passed between activities 
+- It is also defined by its action, data, category, and flag.
 
-2 types: implicit and explicit  It can store extras and bundles to be passed between activities. It is also defined by its action and categories. 
+2 types: 
+- Explicit intents - specify the component to start 
+- Implicit intents - do not name a specific component, but instead declare a general action to perform, which allows a component from another app to handle it. (ex. maps, email)
 
 The common applications are: 
 1. start an activity 
@@ -80,13 +85,16 @@ The common applications are:
 3. receive a broadcast 
 4. bind to a service 
 
+#### What is an intent filter?
+An intent filter is a statement in the manifest that specifies what type of intent the application is able handle/recieve.
 
 #### What is serializable?
-#### What is a Parcelable? Why is it better than a Serializable?
-#### What is difference between Serializable and Parcelable ? Which should you use in Android?
+- Serializable is an interface that when implemented allows the object to be be serilaized 
+- Serialization is the process of translating an object into a format (stream of data) that can be stored and reconstructed later
 
-- Serializable is an interface that is a slower process that uses reflection, creating many temporary objects, (java sdk)
-- Paracelable is a faster method for marshaling objects, it is typically preferred over serializing, (android sdk)
+#### What is difference between Serializable and Parcelable ? 
+- Serializable - is a slower process that uses reflection, creating many temporary objects, (java sdk)
+- Paracelable - is a faster method, it is typically preferred over serializing, (android sdk)
 
 #### What is a bundle
 A Bundle is a class that can contain primitive data types, arrays, String and objects which are of the Parcelable or Serialisable type
@@ -95,11 +103,12 @@ A Bundle is a class that can contain primitive data types, arrays, String and ob
 
 #### What is a Context and what is it used for?
 A Context is an abstract class
-There are 2 types of Contexts: activity context ()and application contxt (exist for the lifetime of the application)
-- its the super class for Activity and Service  
-- 1. It gives access to resources 
-- 2. allow components to communicate through messages
-- 3. gives information about the app environment
+- There are 2 types of Contexts: activity context and application contxt (exist for the lifetime of the application)
+- its the super class for Activity and Service 
+- the functions includes:
+1. It gives access to resources 
+2. allow components to communicate through messages
+3. gives information about the app environment
 
 #### What is an Activity? 
 An Activity is an abstract class that is a part of the 4 key component of Android:
@@ -108,7 +117,7 @@ An Activity is an abstract class that is a part of the 4 key component of Androi
 - derived from the Context class
 	
 #### What is the Activity lifecycle? 
-It’s the cycle that every Activity follows
+It’s a set of callback methods that gets called when an activity is instantiated 
 
 ##### There are 4 States of an Activity :
 1. RUNNING - If an activity is in the foreground of the screen (at the top of the stack), it is active or running.
@@ -293,10 +302,54 @@ Through the use of different resources designed to address the different sizes a
 
 ## Threads
 
-## RESTful
 
+## Data Presistance
+### SQLite
+### Shared Preferences
+### 
+
+## Third Party Libraries
+
+#### What is EventBus?
+- EventBus is third party library that simplifies the communication between components (Activities, Fragments, and background threads)
+- observer pattern
+- decouples event senders and event receivers (components dont have to know about each other)
+
+
+### Retrofit
+## RESTful
+#### What is Volley?
+
+#### What are the differences between Volley and Retrofit? How do you like Retrofit?
+
+#### How is the proxy pattern implemented in Retrofit? What are the HTTP verbs?
+
+
+#### What is the difference between POST and PUT?
+POST - 
+PUT - 
+
+### RxJava
+### EventBus
+### Glide/Picasso
+
+### Dagger
+
+#### What is Dagger?
+#### What is the difference between Dagger 1 and Dagger 2?
+
+### Volley
 
 ## Testing
+
+## version control 
+
+#### What are the Git commands that you know?
+
+#### What is the differences between git rebase and git merge?
+
+## Design Pattern 
+
 
 #### What is dependency injection? Why is it useful?
 #### How did you do testing in your previous app?
@@ -307,7 +360,6 @@ Through the use of different resources designed to address the different sizes a
 #### Did you do any Material Design improvements over there?
 
 
-#### How is an Activity different from a Fragment?
 #### Talk to me about a challenging situation you've had.
 #### What have you been doing lately?
 #### Have you done streaming video?
@@ -315,11 +367,10 @@ Through the use of different resources designed to address the different sizes a
 #### You have also used exoPlayer?
 #### What are the differences between the list view and the recycler view?
 
-####What would you do to keep the data in a SQLite database when updating an app?
-####Have you used external libraries to access an SQLite database?
-####What is an intent?
+#### What would you do to keep the data in a SQLite database when updating an app?
+#### Have you used external libraries to access an SQLite database?
+#### What is an intent?
 
-#### What are the launch modes in Android?
 
 #### What other mechanisms are there for managing the back-stack?
 
@@ -380,14 +431,6 @@ Through the use of different resources designed to address the different sizes a
 
 #### Let’s say you can’t use SQLCipher, but you wanted the same functionality, how would you do this? Unit testing – talk about your experience with this, and what amount of effort/investment do you place into unit testing?
 
-
-#### What is Dagger?
-#### What is the difference between Dagger 1 and Dagger 2?
-#### What is EventBus?
-- EventBus is third party library that simplifies the communication between components (Activities, Fragments, and background threads)
-- observer pattern
-- decouples event senders and event receivers (components dont have to know about each other)
-
 #### Why is dependency injection helpful? Let’s say that I want to build an SDK to download the information from the server, how would you set up dependency injection?
 
 #### What is mocking?
@@ -400,25 +443,17 @@ Through the use of different resources designed to address the different sizes a
 
 #### When will each callback in the Fragment lifecycle be called?
 
-#### What are the Git commands that you know?
-
-#### What is the differences between git rebase and git merge?
 
 #### What are the differences between RecyclerView and ListView?
 
 #### What are the Layout Managers that we have?
 
-#### What is Volley?
-
-#### What are the differences between Volley and Retrofit? How do you like Retrofit?
-
-#### How is the proxy pattern implemented in Retrofit? What are the HTTP verbs?
-
-#### What is the difference between POST and PUT?
 
 #### How do you implement security in your app?
 
+
 #### Tell me step by step how to set up SQLCipher?
+
 
 #### The answer for the SQLCipher thing is here: http://loopcupcakes.com/2017/02/20/minimal-sqlcipher/
 
