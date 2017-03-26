@@ -66,9 +66,30 @@ The Android architecture is a stack of technology that allows an application to 
 - enhanced notifications
 - improved Doze - conserve battery life
 
-#### What is a bundle
-A Bundle can contain primitive data types, arrays, String and objects which are of the Parcelable or Serialisable type
+## Intent & Intent Filters
 
+
+#### What is an Intent? What are three common uses of an Intent? 
+Intent - allows a way for communicated between the 4 major android components.
+
+2 types: implicit and explicit  It can store extras and bundles to be passed between activities. It is also defined by its action and categories. 
+
+The common applications are: 
+1. start an activity 
+2. starts service 
+3. receive a broadcast 
+4. bind to a service 
+
+
+#### What is serializable?
+#### What is a Parcelable? Why is it better than a Serializable?
+#### What is difference between Serializable and Parcelable ? Which should you use in Android?
+
+- Serializable is an interface that is a slower process that uses reflection, creating many temporary objects, (java sdk)
+- Paracelable is a faster method for marshaling objects, it is typically preferred over serializing, (android sdk)
+
+#### What is a bundle
+A Bundle is a class that can contain primitive data types, arrays, String and objects which are of the Parcelable or Serialisable type
 
 ## ACTIVITY 
 
@@ -82,8 +103,7 @@ There are 2 types of Contexts: activity context ()and application contxt (exist 
 
 #### What is an Activity? 
 An Activity is an abstract class that is a part of the 4 key component of Android:
-- provides a screen that the user interacts with
-- provides the UI elements 
+- provides a screen and the UI elements for the user to interact with
 - setContentView(View) used to set the view 
 - derived from the Context class
 	
@@ -174,49 +194,86 @@ The current activity will be destroyed (onPause, onStop, onDestroy) and recreate
 - use savedInstanceState() to save and onCreate(Bundle savedInstantState) to restore data that will be lost during the orienation changes
 - retain a fragment if restarting the activity requires the recovery of a large set of data
 
-##FRAGMENT:
+## FRAGMENT:
 
 #### What is a Fragment?
-Fragment class helps to better modularize code, build more sophisticated user interfaces for larger screens, and help scale their application between small and large screens.
-A Fragment is a piece of an application's user interface or behavior that can be placed in an Activity.
+A Fragment user interface or behavior that can be placed in an Activity.
+
+#### Advantage of Fragments
+1. Modularity: dividing complex activity code into different fragments for better organization and maintenance
+2. Reusability: the fragment's behavior/UI can be used in multiple activities
+3. Adaptability: representing different layouts depending on screen orientation and size (tablet)
 
 #### What is the Fragment Lifecycle?
-Though Fragment defines its own lifecycle, that lifecycle is dependent on its activity: if the activity is stopped, no fragments inside of it can be started; when the activity is destroyed, all fragments will be destroyed.
+The Fragment lifecycle is the set of callback methods called whenever a Fragment is instantiated
 
-#### What is the difference between an Activity and a Fragment? 
-- A Fragment is a piece of an application’s user interface or behavior that can be placed in an Activity, that is it requires an Activity to exist. 
-- Whereas an Activity can exist by itself.
+##### Like an activity, a fragment can exist in three states:
+- Resumed - The fragment is visible in the running activity.
+- Paused - Another activity is in the foreground and has focus, but the activity in which this fragment lives is still visible (the foreground activity is partially transparent or doesn't cover the entire screen).
+- Stopped - The fragment is not visible. Either the host activity has been stopped or the fragment has been removed from the activity but added to the back stack. A stopped fragment is still alive (all state and member information is retained by the system). However, it is no longer visible to the user and will be killed if the activity is killed.
 
-#### Headless Fragment?
+##### The Fragment lifecycle is dependent on its activity: 
+When you add a fragment:
+1. *onAttach: when the fragment attaches to its host activity*
+2. onCreate: when a new fragment instance initializes
+3. *onCreateView: when a fragment creates its portion of the view hierarchy, which is added to its activity’s view hierarchy (There is no need to implement this method for headless fragments.)*
+4. *onActivityCreated: when the fragment’s activity has finished its own onCreate event*
+5. onStart: when the fragment is visible
+6. onResume: when the fragment is visible and interactable 
+
+ -- FRAGMENT IS ACTIVE--
+ 
+When you remove a fragment:
+1. onPause: when the fragment is no longer interactable (or when the fragment’s activity pauses)
+2. onStop: when the fragment is no longer visible (or when the fragment’s activity stops)
+3. *onDestroyView: when the view and related resources created in onCreateView are removed from the activity’s view hierarchy and destroyed (If the fragment is recreated from the backstack this method is called and afterwards the onCreateView method.)*
+4. onDestroy: when the fragment does its final clean up
+5. *onDetach: when the fragment is detached from its activity*
+
+#### What are the ways of implementing a fragment?
+1. statically - declare the fragment inside the activity's XML file
+2. dynamically - add the fragment to an existing ViewGroup using FragmentManager and FragmentTransaction 
 
 #### What is a FragmentManager? 
 Is the abstract class used to manage Fragments within an Activity.
+The FragmentManager can be used to:
+- FragmentTransaction - create a FragmentTransaction to  add(), remove(), and replace() a fragment
+- FindFragmentById/Tag() - Get fragments that exist in the activity
+- popBackStack() - Pop fragments off the back stack, with popBackStack() (simulating a Back command by the user).
+- addOnBackStackChangedListener() - Register a listener for changes to the back stack
+
+#### What is the difference between an Activity and a Fragment? 
+- A Fragment - is a interface or behavior that can be placed in an Activity, requires an Activity to exist
+- An Activity - can exist by itself.
+
+#### Headless Fragment?
+- A Fragment without a UI (provide a behanvior)
+- onCreateView() does not need to be implemented
+- findFragmentByTag() to find and identify fragments
 
 #### What is the difference between onCreateView() and onActivityCreated()? 
-The implementation of any action code can be optional in the onCreateView method this is because there is actually no need to always have an UI for every fragment, yet the onActivityCreated method is always the point in the Fragment’s lifecycle from which you can start referencing and using UI elements, gathering information that may be used to be persisted throughout the application task flow.
+- onCreateView - the implementation of this method is optional because headless fragments dont have UI, no view is needed
+- onActivityCreated - at this point you can start instantiating objects and views can be accessed with the findViewById() method, Called when the activity's onCreate() method has returned.
 
 #### How to get the FragmentManager from an Activity that is using the support libraries? 
 By importing the FragmentManager class from the android.support.v4.app package.
 
 #### What method do you use to create the UI in an Activity and in a Fragment? 
-onCreate() - Activity onCreateView() - Fragment (which is called after the onCreate())
-
-#### What is the Fragment lifecycle? 
-The Fragment lifecycle is the set of callback methods called whenever a Fragment is instantiated, since they have their properties of their own, its lifecycle is similar to that of the Activities however they have different states that can be addressed and managed in those callback methods.
-
-#### How to support multi-screen devices? 
-Through the use of different resources designed to address the different sizes and densities available: layouts and bitmap densities.
-
-#### How would you then manage the backstack?
+- onCreate() - Activity 
+- onCreateView() - Fragment (which is called after the onCreate())
 
 #### How to communicate between a Activity and a Fragment? 
-Through interface declared in the fragment class and implemented by the parent Activity class. There is also the possibility to use a third party library which implements the subscribe and publish pattern, that simplifies the communication process, e.g. EventBus.
+1. interface - Through interface declared in the fragment class and implemented by the parent Activity class. 
+2. EventBus - a third party library which implements the subscribe and publish pattern, that simplifies the communication process
 
 #### How to communicate between 2 fragments? 
-Through interface declared in the Fragment A class and implemented by the parent Activity class, then the Activity will update/notify Fragment B class, which it has also defined an Interface. There is also the possibility to use a third party library which implements the subscribe and publish pattern, that simplifies the communication process, e.g. EventBus.
+1. interface - Through interface declared in the Fragment A class and implemented by the parent Activity class, then the Activity will update/notify Fragment B class, which it has also defined an Interface. 
+2. EventBus -  a third party library which implements the subscribe and publish pattern, that simplifies the communication process
 
 #### Why use an interface in a Fragment to communicate to the hosting Activity? 
-Because it removes any dependency between Activities and Fragments. Remembering that Fragments can be modularized and re-used in other activities of an app, the use of an Interface provides a standard way of enabling communication for any activity that desires to send or get data from/to a fragment it simply has to implement the defined callback interface of the fragment.
+- Because it removes any dependency between Activities and Fragments
+- allows Fragments to be modularized and re-used in other activities of an app 
+- the use of an Interface provides a standard way of communication 
 
 ## Service
 #### What is a bound service?
@@ -224,18 +281,15 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 #### What thread does a regular service run on?
 #### What is a worker thread?
 
+
+#### How to support multi-screen devices? 
+Through the use of different resources designed to address the different sizes and densities available: layouts and bitmap densities.
+
+#### How would you then manage the backstack?
+
 ## Broadcast Recievers
 
 ## Content Providers
-
-## Intent & Intent Filters
-
-### What is an Intent?
-
-### What is serializable?
-### What is a Parcelable? Why is it better than a Serializable?
-•	Serializable - uses reflection
-•	Parcelable -
 
 ## Threads
 
@@ -301,9 +355,6 @@ Because it removes any dependency between Activities and Fragments. Remembering 
 
 #### What have you used for dependency injection?
 
-#### Talk about fragments – have you used those?
-
-#### What are some of the advantages?
 
 #### Speaking of MVP – can you tell me more about this design pattern?
 
@@ -415,11 +466,6 @@ Content providers is one of the 4 key component of Android. It allows interproce
 #### What is the relationship between the life cycle of an AsyncTask and an Activity? 
 What problems can this result in? How can these problems be avoided? When an activity is destroyed the AsyncTask continues to execute. The thread becomes and orphan thread and is a problem when the Asynctask wants to return the result. To avoid this problem, stop the running operation on the onDestroy or on onStop callbacks, or you can use a headless fragment, doesn’t destroy the activity when the context change, eventbus, - When change orientation or change language, change in configuration, activity recycles. 
 
-
-
-#### What is an Intent? What are three common uses of an Intent? 
-2 types - implicit and explicit Intent - allows a way for communicated between the 4 major android components. It can store extras and bundles to be passed between activities. It is also defined by its action and categories. The 3 common applications are: 1. start an activity 2. starts service 3. receive a broadcast 4. bind to a service 
-
 #### What are the different types of Services? 
 regular service (started & bound) intent service What is the difference between a fragment and an activity? Explain the relationship between the two? The activity hosts the fragment, the activity can be used to communicate between multiple fragments. The lifecycle of the fragment is closely related to the activity lifecycle, unless it is headless.
 
@@ -433,9 +479,7 @@ If your instrumentation test is not running reliably, what might be the cause an
 Describe the use of resources in Android
 		Android studio can use the resources to decided on the most appropriate 			display depending on the users preference. Default resources and specific 			resources
 Different resources are used depending on the state of the phone, for example: landscape view, languages, left to right view, night mode
-What is difference between Serializable and Parcelable ? Which should you use in Android?
-Serializable is an interface that is a slower process that uses reflection, creating many temporary objects, thats belong java sdk
-Paracelable is a faster method for marshaling objects, it is typically preferred over serializing, that belongs to android sdk, needs to implement some methods.
+
 
 ####What is the difference between Service and IntentService? How is each used?
 		A service uses the main thread, depends: bound until the bound thing ends. 				started - when its called stop() or stops self, and also depends on
