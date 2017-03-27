@@ -275,19 +275,55 @@ By importing the FragmentManager class from the android.support.v4.app package.
 1. interface - Through interface declared in the fragment class and implemented by the parent Activity class. 
 2. EventBus - a third party library which implements the subscribe and publish pattern, that simplifies the communication process
 
-#### How to communicate between 2 fragments? 
+### How to communicate between 2 fragments? 
 1. interface - Through interface declared in the Fragment A class and implemented by the parent Activity class, then the Activity will update/notify Fragment B class, which it has also defined an Interface. 
 2. EventBus -  a third party library which implements the subscribe and publish pattern, that simplifies the communication process
 
-#### Why use an interface in a Fragment to communicate to the hosting Activity? 
+### Why use an interface in a Fragment to communicate to the hosting Activity? 
 - Because it removes any dependency between Activities and Fragments
 - allows Fragments to be modularized and re-used in other activities of an app 
 - the use of an Interface provides a standard way of communication 
 
 ## Service
+
+### What is a service 
+- A service is one of the major 4 android component that can perform long-running operations in the background 
+
+### What are the 3 types of Services
+1. Scheduled - when an API (JobScheduler) launches the service
+2. Started - when an application component (ex. activity) calls startService(). The service with run indefinitely, until it completes 
+3. Bound - when an application component binds to it by calling bindService(). 
+
+#### What are the 2 started services:
+Service: 
+- This is the base class for all services. When you extend this class, it's important to create a new thread in which the service can complete all of its work
+- uses the main thread by default, which can slow the performance of any activity that your application is running.
+IntentService:
+- uses a worker thread to handle all of the start requests, one at a time 
+- This is the best option if you don't require that your service handle multiple requests simultaneously. 
+- onHandleIntent() - which receives the intent for each start request so that you can complete the background work.
+
+
 #### What is a bound service?
+- A service is bound when an application component binds to it by calling bindService()
+- A bound service offers a client-server interface that allows components to interact with the service (send requests, receive results, and even do so across processes with interprocess communication (IPC)) 
+- A bound service runs only as long as another application component is bound to it. 
+- Multiple components can bind to the service at once, but when all of them unbind, the service is destroyed.
+
 #### When would you use an intent service?
+- An intent service would be used to perform long running operations in the background using a worker thread to free up the UI thread
+- A intent service is used over just a regular service when do not need to handle multiple requests at the same time (multi-threading)
+
+
+START_NOT_STICKY - If the system kills the service after onStartCommand() returns, do not recreate the service unless there are pending intents to deliver.
+
+START_STICKY - If the system kills the service after onStartCommand() returns, recreate the service and call onStartCommand(), but do not redeliver the last intent. 
+
+START_REDELIVER_INTENT - If the system kills the service after onStartCommand() returns, recreate the service and call onStartCommand() with the last intent that was delivered to the service. 
+
+
 #### What thread does a regular service run on?
+
 #### What is a worker thread?
 
 
