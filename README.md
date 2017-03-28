@@ -37,6 +37,9 @@ The Android architecture is a stack of technology that allows an application to 
 
 ### How do you support multiple languages? 
  - within the resources create an alternative strings.xml file with the desired language(s) locale qualifier.
+ 
+### How to support multi-screen devices? 
+Through the use of different resources designed to address the different sizes and densities available: layouts and bitmap densities.
 
 ### What are 9-patch images? 
  - 9-Patch image is a bitmap images that automatically resize to adjust to the contents of the view and the size of the 
@@ -55,44 +58,44 @@ The Android architecture is a stack of technology that allows an application to 
  - creates a sense of conhesiveness and familiarlarity between apps for the user experience
  - example: color scheme, text, alignents,  
 
-#### What is new for developers in each of the follonwing:
+### What is new for developers in each of the follonwing:
 - Lollipop (5.0) - material design, Android runtime (ART) replace Delvik
 - Marshmallow (6.0) - runtime permissions, Doze & App standby mode 
 - Nougat (7.0) - split screen, JIT to compliment AOT 
 
-#### Can you tell me what are the new features in Android Nougat?
+### Can you tell me what are the new features in Android Nougat?
 - split screen 
 - JIT and AOT
 - enhanced notifications
 - improved Doze - conserve battery life
 
-#### What are the launch modes in Android?
+### What are the launch modes in Android?
 
 ## Intent & Intent Filters
 
-#### What is an Intent? What are three common uses of an Intent? 
+### What is an Intent? What are three common uses of an Intent? 
 - Intents facilitate communicated between the android components
 - It can store extras and bundles to be passed between activities 
 - It is also defined by its action, data, category, and flag.
 
-2 types: 
+#### 2 types: 
 - Explicit intents - specify the component to start 
 - Implicit intents - do not name a specific component, but instead declare a general action to perform, which allows a component from another app to handle it. (ex. maps, email)
 
-The common applications are: 
+### The common applications are: 
 1. start an activity 
 2. starts service 
 3. receive a broadcast 
 4. bind to a service 
 
-#### What is an intent filter?
+### What is an intent filter?
 An intent filter is a statement in the manifest that specifies what type of intent the application is able handle/recieve.
 
-#### What is serializable?
+### What is serializable?
 - Serializable is an interface that when implemented allows the object to be be serilaized 
 - Serialization is the process of translating an object into a format (stream of data) that can be stored and reconstructed later
 
-#### What is difference between Serializable and Parcelable ? 
+### What is difference between Serializable and Parcelable ? 
 - Serializable - is a slower process that uses reflection, creating many temporary objects, (java sdk)
 - Paracelable - is a faster method, it is typically preferred over serializing, (android sdk)
 
@@ -101,7 +104,7 @@ A Bundle is a class that can contain primitive data types, arrays, String and ob
 
 ## ACTIVITY 
 
-#### What is a Context and what is it used for?
+### What is a Context and what is it used for?
 A Context is an abstract class
 - There are 2 types of Contexts: activity context and application contxt (exist for the lifetime of the application)
 - its the super class for Activity and Service 
@@ -110,22 +113,22 @@ A Context is an abstract class
 2. allow components to communicate through messages
 3. gives information about the app environment
 
-#### What is an Activity? 
+### What is an Activity? 
 An Activity is an abstract class that is a part of the 4 key component of Android:
 - provides a screen and the UI elements for the user to interact with
 - setContentView(View) used to set the view 
 - derived from the Context class
 	
-#### What is the Activity lifecycle? 
+### What is the Activity lifecycle? 
 It’s a set of callback methods that gets called when an activity is instantiated 
 
-##### There are 4 States of an Activity :
+#### There are 4 States of an Activity :
 1. RUNNING - If an activity is in the foreground of the screen (at the top of the stack), it is active or running.
 2. PAUSED - If an activity has lost focus but is still visible (that is, a new non-full-sized or transparent activity has focus on top of your activity), it is paused. A paused activity is completely alive (it maintains all state and member information and remains attached to the window manager), but can be killed by the system in extreme low memory situations.
 3. STOPPED - If an activity is completely obscured by another activity, it is stopped. It still retains all state and member information, however, it is no longer visible to the user so its window is hidden and it will often be killed by the system when memory is needed elsewhere.
 4. KILLED - If an activity is paused or stopped, the system can drop the activity from memory by either asking it to finish, or simply killing its process. When it is displayed again to the user, it must be completely restarted and restored to its previous state.
 
-##### There are 7 callbacks : 
+#### There are 7 callbacks : 
 1. OnCreate() - called when the activity is first created (when first starts or cromes from killed status)
 2. OnStart() - called when the activity comes to the foreground and visible for the user
 3. OnResume() - called when the activity is prepared to interact with the user
@@ -144,34 +147,34 @@ It’s a set of callback methods that gets called when an activity is instantiat
  - finish() method -
  - finishActivity method - if the activity you want to destroy was started from the Activity you’re currently at
  
-#### What is a task?
+### What is a task?
 A task is a collection of activities that users interact with when performing a certain job
 
-#### What is the backstack?
+### What is the backstack?
 The backstack is a stack of activities, that have recently been active. 
 Activities are pushed onto the the stack in the order that they were started. The activity at the top of the stack is in the running state and the other activites are in the stopped state. When the user hits the back button the activity at the top of the stack is popped off and destroyed.  
 
-#### I want to get information back from an Activity, how can I do that? 
+### I want to get information back from an Activity, how can I do that? 
  - Start the activity with the startActivityForResult
  - Retrieve the information from the onActivityResult
 
-#### What is the difference between StartActivity() and StartActivityResult()?
+### What is the difference between StartActivity() and StartActivityResult()?
 These are the two ways of starting an activity 
  - StartActivity() 
  - StartActivityResult() - The new activity can send back information through the setResult() method. When the activity ends the result comes back through your onActivityResult() method
  
-#### How is the onSaveInstanceState() callback used?
+### How is the onSaveInstanceState() callback used?
 - Instance state of an activity is required to restore the activity to the state in which the user left it.
 - The onSaveInstanceState() callback method can be use to store the activity instance state as a Bundle (always call the super)
 - the Bundle data is passed at restart of the activity to the onCreate() method and onRestoreInstanceState() as parameter
 - *The onSaveInstanceState() method is not called if the user presses the back button.
 
-#### How is the saved instance state is recovered after that activity have been destroyed?
+### How is the saved instance state is recovered after that activity have been destroyed?
 - When an activity is recreated after it was previously destroyed, you can recover your saved state from the Bundle that the system passes your activity. 
 - Both the onCreate() and onRestoreInstanceState() callback methods receive the same Bundle that contains the instance state information.
 - If the state bundle is null, then the system is creating a new instance of the activity, instead of restoring a previous one that was destroyed.
 
-#### If I’m in Activity A and I enter Activity B, what are the callbacks triggered? 
+### If I’m in Activity A and I enter Activity B, what are the callbacks triggered? 
 - Activity A will call onPause() 
 - then Activity B will call onCreate(), onStart(), onResume() 
 - finally Activity A will call onStop().
@@ -291,54 +294,100 @@ By importing the FragmentManager class from the android.support.v4.app package.
 
 ### What are the 3 types of Services
 1. Scheduled - when an API (JobScheduler) launches the service
-2. Started - when an application component (ex. activity) calls startService(). The service with run indefinitely, until it completes 
+2. Started - when an application component (ex. activity) calls startService(). The service will run indefinitely
 3. Bound - when an application component binds to it by calling bindService(). 
 
-#### What are the 2 started services:
+### What are the 2 started services:
 Service: 
-- This is the base class for all services. When you extend this class, it's important to create a new thread in which the service can complete all of its work
-- uses the main thread by default, which can slow the performance of any activity that your application is running.
+- runs on the main thread by default
+- can be used to handle multiple request at the same time
+
 IntentService:
-- uses a worker thread to handle all of the start requests, one at a time 
-- This is the best option if you don't require that your service handle multiple requests simultaneously. 
-- onHandleIntent() - which receives the intent for each start request so that you can complete the background work.
+- runs on a worker thread to handle all of the start requests, one at a time 
+- implement onHandleIntent() - which receives the intent for each start request so that you can complete the background work
+- best option - if you don't need your service to handle multiple requests simultaneously (multi-threading)
 
-
-#### What is a bound service?
+### What is a bound service?
 - A service is bound when an application component binds to it by calling bindService()
-- A bound service offers a client-server interface that allows components to interact with the service (send requests, receive results, and even do so across processes with interprocess communication (IPC)) 
-- A bound service runs only as long as another application component is bound to it. 
-- Multiple components can bind to the service at once, but when all of them unbind, the service is destroyed.
+- A bound service offers a client-server interface that allows components to interact with the service 
+- A bound service runs only as long as another application component is bound to it 
+- Multiple components can bind to the service at once, but when all of them unbind, the service is destroyed
 
-#### When would you use an intent service?
-- An intent service would be used to perform long running operations in the background using a worker thread to free up the UI thread
-- A intent service is used over just a regular service when do not need to handle multiple requests at the same time (multi-threading)
+### When would you use an intent service?
+- An intent service would be used when you need to run your operations in the background using a worker thread 
+- for example: 
+1. long running operations 
+2. network access  
+3. database queries 
+- An intent service is used over a regular service when you do not need to handle multiple requests at the same time (multi-threading)
+
+### What is the lifecycle of Service 
+Started service - call to startService():
+1. onCreate()
+2. onStartCommand()
+3. onDestroy()
+
+Bound service - call to bindService():
+1. onCreate()
+2. onBind()
+3. onUnBind()
+4. onDestroy()
+
+<img src="https://developer.android.com/images/service_lifecycle.png"/>
+
+### What are the 3 possible return for onStartCommand()?
+1. START_NOT_STICKY - If the system kills the service after onStartCommand() returns, do not recreate the service unless there are pending intents to deliver.
+
+2. START_STICKY - If the system kills the service after onStartCommand() returns, recreate the service and call onStartCommand(), but do not redeliver the last intent. 
+
+3. START_REDELIVER_INTENT - If the system kills the service after onStartCommand() returns, recreate the service and call onStartCommand() with the last intent that was delivered to the service. 
+
+### What is a foreground service
+- A foreground service has the highest priority and is not able to be killed by the system. 
+- The users are actively aware of it and it is required to have a notification for the status bar
+- example: music player
+
+### When would you use a service, when would you use a new Thread?
+- Service: when you need to perform something in the background, even when the user is not interacting with your application
+- new Thread: when you must perform work outside of your main thread, but only while the user is interacting with the application
+
+### What thread does a regular service run on?
+- Main UI thread by defualt 
+
+## Threads & Processes
+
+### Process
+- Everything within an application runs in a single process
+- in the manifest - you can run an app on multiple processes or multiple apps on one process
+
+### Describe Android's single thread model
+- When an application is launched, the system creates a thread of execution called "main."
+- All components and system calls are ran on the main thread.  
+- The main thread is responsible for updating the UI using the Android UI toolkit. 
+- Android UI toolkit is not thread-safe (the UI should only be manipulated with UI thread) 
+- The main thread can gets blocked up with when its handling long running operations which result in a (ANR) error
+- worker threads should be used to handle long running operations
+
+#### there are simply two rules to Android's single thread model:
+- Do not block the UI thread
+- Do not access the Android UI toolkit from outside the UI thread
+
+#### What is the ANR dialog?
+Application Not Responding - when the UI thread get blocked up for more than a few seconds (5 sec.) the application crashes
+
+### What is a worker thread?
+Any thread that isnt the UI thread is a worker thread. 
 
 
-START_NOT_STICKY - If the system kills the service after onStartCommand() returns, do not recreate the service unless there are pending intents to deliver.
-
-START_STICKY - If the system kills the service after onStartCommand() returns, recreate the service and call onStartCommand(), but do not redeliver the last intent. 
-
-START_REDELIVER_INTENT - If the system kills the service after onStartCommand() returns, recreate the service and call onStartCommand() with the last intent that was delivered to the service. 
 
 
-#### What thread does a regular service run on?
-
-#### What is a worker thread?
-
-
-#### How to support multi-screen devices? 
-Through the use of different resources designed to address the different sizes and densities available: layouts and bitmap densities.
 
 #### How would you then manage the backstack?
 
 ## Broadcast Recievers
 
 ## Content Providers
-
-## Threads
-
-
+ 
 ## Data Presistance
 ### SQLite
 ### Shared Preferences
@@ -507,6 +556,7 @@ PUT -
 #### How to prevent other apps from deleting contents from your content provider?
 
 #### Talk to me about Asynctask disadvantages.
+AsyncTask allows you to perform asynchronous work on your user interface. It performs the blocking operations in a worker thread and then publishes the results on the UI thread, without requiring you to handle threads and/or handlers yourself.
 
 #### Tell me how do I set up the Fingerprint authentication?
 
