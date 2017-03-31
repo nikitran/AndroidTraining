@@ -400,19 +400,39 @@ Any thread that isnt the UI thread is a worker thread.
 - observer pattern
 - decouples event senders and event receivers (components dont have to know about each other)
 
+### REST 
+#### What is REST?
+- Representational state transfer 
+- Rest is an Architectual style for the web
+- stateless
+- http request/repsonce protocols for communicating data from client to server
+
+##### 6 guildlines that define REST
+1. 
+2.
+3.
+4.
+5. code on demand (optional)
+6.
+
+#### 
+
+### How is the proxy pattern implemented in Retrofit? 
+
+### What are the HTTP verbs?
+
+
+### What is the difference between POST and PUT?
+POST - 
+PUT - 
+
 
 ### Retrofit
-## RESTful
+
 #### What is Volley?
 
 #### What are the differences between Volley and Retrofit? How do you like Retrofit?
 
-#### How is the proxy pattern implemented in Retrofit? What are the HTTP verbs?
-
-
-#### What is the difference between POST and PUT?
-POST - 
-PUT - 
 
 ### RxJava
 ### EventBus
